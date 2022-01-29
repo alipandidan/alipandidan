@@ -8,7 +8,6 @@
     <title>Gallery - Ali Pandidan</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.css" integrity="sha512-Woz+DqWYJ51bpVk5Fv0yES/edIMXjj3Ynda+KWTIkGoynAMHrqTcDUQltbipuiaD5ymEo9520lyoVOo9jCQOCA==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <style>
-
         * {
             margin: 0;
             padding: 0;
@@ -16,43 +15,85 @@
             font-family: 'Poppins', sans-serif;
         }
 
+        h1 {
+            color: gray;
+        }
+
         .container {
             width: 100%;
             min-height: 100vh;
-            display: flex;
             align-items: center;
             justify-content: center;
-            padding: 10px 8% 50px;
+            padding: 50px 8%;
         }
 
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            grid-gap: 30px;
-        }
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            padding: 0 4px;
+          }
 
-        .gallery img {
+          /* Create four equal columns that sits next to each other */
+          .column {
+            flex: 25%;
+            max-width: 25%;
+            padding: 0 4px;
+          }
+
+          .column img {
+            margin-top: 8px;
+            vertical-align: middle;
             width: 100%;
-        }
+          }
+
+          /* Responsive layout - makes a two column-layout instead of four columns */
+          @media screen and (max-width: 800px) {
+            .column {
+              flex: 50%;
+              max-width: 50%;
+            }
+          }
+
+          /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+          @media screen and (max-width: 600px) {
+            .column {
+              flex: 100%;
+              max-width: 100%;
+            }
+          }
     </style>
 </head>
 
 <body>
     <div class="container">
-        <div class="gallery">
+        <div style="padding:0 10px">
+            <h3>Ali's Gallery</h3>
+            <small><a onclick="history.back()" style="display:inline-block" href="#">Back</a></small>
         </div>
+        <div class="gallery row"></div>
     </div>
 </body>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox-plus-jquery.js" integrity="sha512-0rYcJjaqTGk43zviBim8AEjb8cjUKxwxCqo28py38JFKKBd35yPfNWmwoBLTYORC9j/COqldDc9/d1B7dhRYmg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script>
     let apiUrl = "https://api.github.com/repos/alipandidan/alipandidan/contents/gallery/images?ref=main"
     $.get(apiUrl, function (data) {
+        let index = 0
         data.forEach((photo) => {
             photo.caption = photo.path.split('/').pop().split('.')[0]
-            $('.gallery').append(`<a href="/${photo.path}" data-lightbox="models" data-title="${photo.caption}"><img src="/${photo.path}" /></a>`)
+
+            if (isDividedByFour(index)) {
+                $('.gallery').append(`<div class="column photo${index+1} photo${index+2} photo${index+3} photo${index+4}"></div>`);
+            }
+
+            $('.photo' + index).append(`<a href="/${photo.path}" data-lightbox="models" data-title="${photo.caption}"><img src="/${photo.path}"/></a>`);
+
+            index++;
         })
     })
+
+    function isDividedByFour(num) {
+        return num % 4 == 0;
+    }
 </script>
 
 </html>
