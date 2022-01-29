@@ -31,36 +31,84 @@
             display: flex;
             flex-wrap: wrap;
             padding: 0 4px;
-          }
+        }
 
-          /* Create four equal columns that sits next to each other */
-          .column {
+        /* Create four equal columns that sits next to each other */
+        .column {
             flex: 25%;
             max-width: 25%;
             padding: 0 4px;
-          }
+        }
 
-          .column img {
+        .column::after {
+            content: '';
+            clear: both;
+            display: block;
+        }
+
+        .column img {
             margin-top: 8px;
             vertical-align: middle;
             width: 100%;
-          }
+        }
 
-          /* Responsive layout - makes a two column-layout instead of four columns */
-          @media screen and (max-width: 800px) {
+        /* Responsive layout - makes a two column-layout instead of four columns */
+        @media screen and (max-width: 800px) {
             .column {
-              flex: 50%;
-              max-width: 50%;
+                flex: 50%;
+                max-width: 50%;
             }
-          }
+        }
 
-          /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
-          @media screen and (max-width: 600px) {
+        /* Responsive layout - makes the two columns stack on top of each other instead of next to each other */
+        @media screen and (max-width: 600px) {
             .column {
-              flex: 100%;
-              max-width: 100%;
+                flex: 100%;
+                max-width: 100%;
             }
-          }
+        }
+
+        figure {
+            background: #fff;
+            overflow: hidden;
+        }
+
+        .shine figure {
+            position: relative;
+        }
+
+        .shine figure::before {
+            position: absolute;
+            top: 0;
+            left: -75%;
+            z-index: 2;
+            display: block;
+            content: '';
+            width: 50%;
+            height: 100%;
+            background: -webkit-linear-gradient(left, rgba(255,255,255,0) 0%, rgba(255,255,255,.3) 100%);
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,.3) 100%);
+            -webkit-transform: skewX(-25deg);
+            transform: skewX(-25deg);
+        }
+
+        .shine figure:hover::before {
+            -webkit-animation: shine .75s;
+            animation: shine .75s;
+        }
+
+        @-webkit-keyframes shine {
+            100% {
+                left: 125%;
+            }
+        }
+
+        @keyframes shine {
+            100% {
+                left: 125%;
+            }
+        }
+
     </style>
 </head>
 
@@ -82,10 +130,10 @@
             photo.caption = photo.path.split('/').pop().split('.')[0]
 
             if (isDividedByFour(index)) {
-                $('.gallery').append(`<div class="column photo${index+1} photo${index+2} photo${index+3} photo${index+4}"></div>`);
+                $('.gallery').append(`<div class="column shine photo${index+1} photo${index+2} photo${index+3} photo${index+4}"></div>`);
             }
 
-            $('.photo' + index).append(`<a href="/${photo.path}" data-lightbox="models" data-title="${photo.caption}"><img src="/${photo.path}"/></a>`);
+            $('.photo' + index).append(`<figure><a href="/${photo.path}" data-lightbox="models" data-title="${photo.caption}"><img src="/${photo.path}"/></a></figure>`);
 
             index++;
         })
