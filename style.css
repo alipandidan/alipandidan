@@ -1,0 +1,45 @@
+body {
+    background-color: #000;
+    color: #fff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 0.9em;
+}
+
+.center {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+.aquamarine {
+    color: aquamarine;
+}
+
+.coral {
+    color: coral;
+}
+
+#menu {
+    font-size: 0.8em;
+    padding: 0;
+    margin: 2px 0 0 0;
+}
+ul#menu li {
+    display: inline;
+}
+
+a {
+    color:bisque;
+    text-decoration: none;
+    transition: color 0.3s linear;
+    -webkit-transition: color 0.3s linear;
+    -moz-transition: color 0.3s linear;
+
+}
+
+a:hover {
+    color: aquamarine;
+}

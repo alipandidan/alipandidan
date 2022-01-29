@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - Ali Pandidan</title>
+    <style>
+        body {
+            background-color: rgb(44, 41, 41);
+        }
+
+        * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+          font-family: 'Poppins', sans-serif;
+        }
+
+        .container {
+          width: 100%;
+          min-height: 100vh;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          padding: 50px 8%;
+        }
+
+        .gallery {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          grid-gap: 30px;
+        }
+
+        .gallery img {
+          width: 100%;
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!--Lightbox CDN  -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.css"
+        integrity="sha512-Woz+DqWYJ51bpVk5Fv0yES/edIMXjj3Ynda+KWTIkGoynAMHrqTcDUQltbipuiaD5ymEo9520lyoVOo9jCQOCA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <body>
+        <div class="container">
+            <div class="gallery">
+                <a href="images/autumn.jpg" data-lightbox="models" data-title="Drottningholm Palace Park ">
+                    <img src="images/autumn.jpg"/>
+                </a>
+
+                <a href="images/beach.jpg" data-lightbox="models" data-title="Caption2">
+                    <img src="images/beach.jpg"/>
+                </a>
+
+                <a href="images/blue-beach.jpg" data-lightbox="models" data-title="Caption3">
+                    <img src="images/blue-beach.jpg"/>
+                </a>
+
+                <a href="images/road.jpg" data-lightbox="models" data-title="Caption3">
+                    <img src="images/road.jpg"/>
+                </a>
+
+                <a href="images/simi.jpg" data-lightbox="models" data-title="Sacred Monastery of Saint Archangel Michael the Panormitis">
+                    <img src="images/simi.jpg"/>
+                </a>
+            </div>
+        </div>
+
+        <!-- Lightbox Script tag   -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox-plus-jquery.js"
+            integrity="sha512-0rYcJjaqTGk43zviBim8AEjb8cjUKxwxCqo28py38JFKKBd35yPfNWmwoBLTYORC9j/COqldDc9/d1B7dhRYmg=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+    </body>
+
+</body>
+
+</html>
